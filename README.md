@@ -263,6 +263,6 @@ For support, please:
 ---
 
 <div align="center">
-  <p>Made with ❤️ by Your Name</p>
+  <p>Made with ❤️ by ilya nozary</p>
   <p>© 2024 Advanced Data Generator</p>
 </div>
