@@ -1,0 +1,7 @@
+include README.md
+include requirements.txt
+include LICENSE
+include .env.example
+include config.yaml
+recursive-include tests *
+recursive-include data * 
