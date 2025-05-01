@@ -1,0 +1,3 @@
+_sa_instance_state,name,email,id,birth_date,created_at,phone,address,is_active
+<sqlalchemy.orm.state.InstanceState object at 0x0000024C674025D0>,Carol Palmer,prestonwayne@example.com,1,1970-04-29 00:00:00,2025-05-01 10:10:32.471495,001-836-866-8356,"9966 Stephanie Crossing, South Dean, NC 23262",False
+<sqlalchemy.orm.state.InstanceState object at 0x0000024C67402690>,Trevor Simpson,william77@example.com,2,2001-08-18 00:00:00,2025-05-01 10:10:32.471495,(884)567-7969x048,"8710 Carlos Shoals, North Travis, WV 58497",True

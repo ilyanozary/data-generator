@@ -21,7 +21,7 @@
 
 ## 🌟 Overview
 
-Advanced Data Generator is a powerful, production-ready tool for generating realistic test data. It's designed to help developers, testers, and data scientists create high-quality synthetic data for various applications.
+Advanced Data Generator is a powerful, production-ready tool for generating realistic test data. It's designed to help developers, testers, and data scientists create high-quality synthetic data with machine learning capabilities.
 
 ### Key Benefits
 - 🎯 Generate realistic, consistent test data
@@ -30,6 +30,7 @@ Advanced Data Generator is a powerful, production-ready tool for generating real
 - 🔄 Multiple export formats
 - 🚀 High performance and scalability
 - 🔒 Data validation and integrity checks
+- 🧠 Machine Learning enhanced data generation
 
 ## ✨ Features
 
@@ -39,6 +40,12 @@ Advanced Data Generator is a powerful, production-ready tool for generating real
   - Product catalogs with detailed information
   - Order management with relationships
   - Custom data generation rules
+
+- **Machine Learning Integration**
+  - Smart user pattern generation using RandomForest
+  - Sequential data generation with LSTM
+  - Model persistence and reuse
+  - Automatic pattern learning from historical data
 
 - **Internationalization**
   - English (en_US) support
@@ -86,8 +93,8 @@ Advanced Data Generator is a powerful, production-ready tool for generating real
 ### Quick Start
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/data-generator.git
-cd data-generator
+git clone https://github.com/ILYANOZARY/advanced-data-generator.git
+cd advanced-data-generator
 
 # Create and activate virtual environment
 python -m venv venv
@@ -136,6 +143,16 @@ streamlit run web_interface.py
 
 # Access the web interface
 # Open http://localhost:8501 in your browser
+```
+
+### Basic Usage
+```bash
+python main.py --users 10 --products 20 --orders 50 --export json
+```
+
+### ML-Enhanced Generation
+```bash
+python main.py --users 10 --products 20 --orders 50 --use-ml
 ```
 
 ## 📚 API Documentation
@@ -257,12 +274,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support, please:
 1. Check the [documentation](docs/)
-2. Open an [issue](https://github.com/yourusername/data-generator/issues)
-3. Contact the maintainers
+2. Open an [issue](https://github.com/ILYANOZARY/advanced-data-generator/issues)
+3. Contact the maintainer at ilyanozary.dynamic@gmail.com
 
 ---
 
 <div align="center">
-  <p>Made with ❤️ by ilya nozary</p>
+  <p>Made with ❤️ by ILYANOZARY</p>
   <p>© 2024 Advanced Data Generator</p>
 </div>

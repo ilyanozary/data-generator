@@ -1,0 +1,151 @@
+orders:
+- _sa_instance_state: !!python/object:sqlalchemy.orm.state.InstanceState
+    class_: &id001 !!python/name:main.Order ''
+    committed_state: {}
+    expired_attributes: !!set {}
+    instance: null
+    key: !!python/tuple
+    - *id001
+    - !!python/tuple
+      - 1
+    - null
+    load_options: !!python/tuple []
+    load_path:
+    - !!python/tuple
+      - *id001
+      - null
+    manager: !!python/object:sqlalchemy.orm.instrumentation._SerializeManager
+      class_: *id001
+  created_at: 2025-05-01 10:10:32.492110
+  id: 1
+  product_id: 2
+  quantity: 3
+  status: completed
+  total_price: 153.60000000000002
+  user_id: 2
+- _sa_instance_state: !!python/object:sqlalchemy.orm.state.InstanceState
+    class_: *id001
+    committed_state: {}
+    expired_attributes: !!set {}
+    instance: null
+    key: !!python/tuple
+    - *id001
+    - !!python/tuple
+      - 2
+    - null
+    load_options: !!python/tuple []
+    load_path:
+    - !!python/tuple
+      - *id001
+      - null
+    manager: !!python/object:sqlalchemy.orm.instrumentation._SerializeManager
+      class_: *id001
+  created_at: 2025-05-01 10:10:32.492110
+  id: 2
+  product_id: 2
+  quantity: 10
+  status: pending
+  total_price: 512.0
+  user_id: 2
+products:
+- _sa_instance_state: !!python/object:sqlalchemy.orm.state.InstanceState
+    class_: &id002 !!python/name:main.Product ''
+    committed_state: {}
+    expired_attributes: !!set {}
+    instance: null
+    key: !!python/tuple
+    - *id002
+    - !!python/tuple
+      - 1
+    - null
+    load_options: !!python/tuple []
+    load_path:
+    - !!python/tuple
+      - *id002
+      - null
+    manager: !!python/object:sqlalchemy.orm.instrumentation._SerializeManager
+      class_: *id002
+  category: a
+  created_at: 2025-05-01 10:10:32.471495
+  description: Agreement benefit quality black wind last however. Without top class
+    expect decision vote.
+  id: 1
+  name: decade
+  price: 79.97
+  stock_quantity: 610
+- _sa_instance_state: !!python/object:sqlalchemy.orm.state.InstanceState
+    class_: *id002
+    committed_state: {}
+    expired_attributes: !!set {}
+    instance: null
+    key: !!python/tuple
+    - *id002
+    - !!python/tuple
+      - 2
+    - null
+    load_options: !!python/tuple []
+    load_path:
+    - !!python/tuple
+      - *id002
+      - null
+    manager: !!python/object:sqlalchemy.orm.instrumentation._SerializeManager
+      class_: *id002
+  category: enjoy
+  created_at: 2025-05-01 10:10:32.471495
+  description: Me challenge avoid none successful wide. Their image word able. Police
+    two table lose grow.
+  id: 2
+  name: girl
+  price: 51.2
+  stock_quantity: 411
+users:
+- _sa_instance_state: !!python/object:sqlalchemy.orm.state.InstanceState
+    class_: &id003 !!python/name:main.User ''
+    committed_state: {}
+    expired_attributes: !!set {}
+    instance: null
+    key: !!python/tuple
+    - *id003
+    - !!python/tuple
+      - 1
+    - null
+    load_options: !!python/tuple []
+    load_path:
+    - !!python/tuple
+      - *id003
+      - null
+    manager: !!python/object:sqlalchemy.orm.instrumentation._SerializeManager
+      class_: *id003
+  address: 9966 Stephanie Crossing, South Dean, NC 23262
+  birth_date: 1970-04-29 00:00:00
+  created_at: 2025-05-01 10:10:32.471495
+  email: prestonwayne@example.com
+  id: 1
+  is_active: false
+  name: Carol Palmer
+  phone: 001-836-866-8356
+- _sa_instance_state: !!python/object:sqlalchemy.orm.state.InstanceState
+    class_: *id003
+    committed_state: {}
+    expired_attributes: !!set {}
+    instance: null
+    key: !!python/tuple
+    - *id003
+    - !!python/tuple
+      - 2
+    - null
+    load_options: !!python/tuple []
+    load_path:
+    - !!python/tuple
+      - *id003
+      - null
+    manager: !!python/object:sqlalchemy.orm.instrumentation._SerializeManager
+      class_: *id003
+  address: 8710 Carlos Shoals, North Travis, WV 58497
+  birth_date: 2001-08-18 00:00:00
+  created_at: 2025-05-01 10:10:32.471495
+  email: william77@example.com
+  id: 2
+  is_active: true
+  name: Trevor Simpson
+  phone: (884)567-7969x048

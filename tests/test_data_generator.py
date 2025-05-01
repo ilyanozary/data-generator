@@ -1,6 +1,28 @@
 import pytest
-from datetime import datetime
-from main import DataGenerator, User, Product, Order, session
+from datetime import datetime, date
+import sys
+import os
+
+# Add the parent directory to the Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from main import DataGenerator, User, Product, Order, session, Base, engine
+
+@pytest.fixture(autouse=True)
+def setup_database():
+    # Create all tables
+    Base.metadata.create_all(engine)
+    # Clean up the database before each test
+    session.query(User).delete()
+    session.query(Product).delete()
+    session.query(Order).delete()
+    session.commit()
+    yield
+    # Clean up after each test
+    session.query(User).delete()
+    session.query(Product).delete()
+    session.query(Order).delete()
+    session.commit()
 
 @pytest.fixture
 def generator():
@@ -13,7 +35,7 @@ def test_generate_user(generator):
     assert user.email
     assert user.address
     assert user.phone
-    assert isinstance(user.birth_date, datetime)
+    assert isinstance(user.birth_date, (datetime, date))
     assert isinstance(user.is_active, bool)
     assert isinstance(user.created_at, datetime)
 

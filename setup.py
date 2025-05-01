@@ -3,39 +3,42 @@ from setuptools import setup, find_packages
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+with open("requirements.txt", "r", encoding="utf-8") as fh:
+    requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
+
 setup(
     name="advanced-data-generator",
     version="1.0.0",
-    packages=find_packages(),
-    install_requires=[
-        "faker==19.13.0",
-        "sqlalchemy==2.0.25",
-        "pandas==2.1.4",
-        "streamlit==1.29.0",
-        "plotly==5.18.0",
-        "pyyaml==6.0.1",
-        "python-dateutil==2.8.2",
-        "pytest>=7.4.0",
-        "black>=23.7.0",
-        "flake8>=6.1.0",
-        "python-dotenv>=1.0.0"
-    ],
-    author="ilyanozary",
+    author="ILYANOZARY",
     author_email="ilyanozary.dynamic@gmail.com",
-    description="Advanced Data Generator - A powerful tool for generating realistic test data",
+    description="A powerful data generation tool with machine learning capabilities",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ilyanozary/advanced-data-generator",
+    url="https://github.com/IlyaNozary/advanced-data-generator",
+    packages=find_packages(),
     classifiers=[
-        "Programming Language :: Python :: 3",
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Developers",
+        "Topic :: Software Development :: Testing",
+        "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.9",
+    install_requires=requirements,
     entry_points={
         "console_scripts": [
             "data-generator=main:main",
         ],
+    },
+    include_package_data=True,
+    package_data={
+        "": ["*.yaml", "*.json"],
     },
 ) 
 

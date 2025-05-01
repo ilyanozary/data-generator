@@ -4,12 +4,12 @@ import argparse
 from typing import List, Dict, Any
 from faker import Faker
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, Boolean
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from datetime import datetime
+from sqlalchemy.orm import declarative_base, sessionmaker
+from datetime import datetime, timezone
 import json
 import csv
 import yaml
+from ml_generator import MLDataGenerator
 
 # Configure logging
 logging.basicConfig(
@@ -67,19 +67,45 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 class DataGenerator:
-    def __init__(self, locale: str = 'en_US'):
+    def __init__(self, locale: str = 'en_US', use_ml: bool = False):
         self.fake = Faker(locale)
         self.session = Session()
+        self.use_ml = use_ml
+        if use_ml:
+            self.ml_generator = MLDataGenerator()
+            # Train ML models with existing data if available
+            self._train_ml_models()
+
+    def _train_ml_models(self):
+        """Train ML models with existing data"""
+        try:
+            # Get historical data
+            users = [user.__dict__ for user in self.session.query(User).all()]
+            if users:
+                self.ml_generator.train_user_pattern_model(users)
+                logger.info("ML models trained successfully")
+        except Exception as e:
+            logger.error(f"Error training ML models: {str(e)}")
 
     def generate_user(self) -> User:
-        return User(
+        base_user = User(
             name=self.fake.name(),
             email=self.fake.email(),
             address=self.fake.address().replace('\n', ', '),
             phone=self.fake.phone_number(),
             birth_date=self.fake.date_of_birth(),
-            is_active=self.fake.boolean()
+            is_active=self.fake.boolean(),
+            created_at=datetime.now(timezone.utc)
         )
+        
+        if self.use_ml and hasattr(self, 'ml_generator'):
+            try:
+                enhanced_user = self.ml_generator.generate_smart_user(base_user.__dict__)
+                return User(**enhanced_user)
+            except Exception as e:
+                logger.error(f"Error generating smart user: {str(e)}")
+                return base_user
+        return base_user
 
     def generate_product(self) -> Product:
         return Product(
@@ -87,7 +113,8 @@ class DataGenerator:
             description=self.fake.text(),
             price=self.fake.pyfloat(left_digits=2, right_digits=2, positive=True),
             category=self.fake.word(),
-            stock_quantity=self.fake.random_int(min=0, max=1000)
+            stock_quantity=self.fake.random_int(min=0, max=1000),
+            created_at=datetime.now(timezone.utc)
         )
 
     def generate_order(self, user_id: int, product_id: int) -> Order:
@@ -98,7 +125,8 @@ class DataGenerator:
             product_id=product_id,
             quantity=quantity,
             total_price=quantity * price,
-            status=self.fake.random_element(elements=('pending', 'completed', 'cancelled'))
+            status=self.fake.random_element(elements=('pending', 'completed', 'cancelled')),
+            created_at=datetime.now(timezone.utc)
         )
 
     def generate_data(self, num_users: int = 10, num_products: int = 20, num_orders: int = 50):
@@ -155,10 +183,11 @@ def main():
     parser.add_argument('--orders', type=int, default=50, help='Number of orders to generate')
     parser.add_argument('--locale', type=str, default='en_US', help='Locale for data generation')
     parser.add_argument('--export', type=str, choices=['json', 'csv', 'yaml'], help='Export format')
+    parser.add_argument('--use-ml', action='store_true', help='Use ML-enhanced data generation')
     
     args = parser.parse_args()
     
-    generator = DataGenerator(locale=args.locale)
+    generator = DataGenerator(locale=args.locale, use_ml=args.use_ml)
     generator.generate_data(args.users, args.products, args.orders)
     
     if args.export:
